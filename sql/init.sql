@@ -19,7 +19,7 @@ create table `SysRole` (
     `UpdateTime` datetime comment '最后修改时间'
 ) comment '系统角色信息表';
 
-create table `SysRole` (
+create table `SysUserRole` (
     `Id` int primary key comment 'Id',
     `UserId` int not null comment '用户Id',
     `RoleId` int not null comment '角色Id',

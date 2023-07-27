@@ -2,10 +2,9 @@ package com.zbx.system.service.impl;
 
 import cn.dev33.satoken.secure.BCrypt;
 import cn.dev33.satoken.stp.StpUtil;
-import com.mybatisflex.core.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.zbx.system.mapper.SysUserMapper;
 import com.zbx.system.pojo.entity.SysUser;
-import com.zbx.system.pojo.entity.table.SysUserTableDef;
 import com.zbx.system.pojo.form.LoginForm;
 import com.zbx.system.service.ILoginService;
 import lombok.RequiredArgsConstructor;
@@ -25,9 +24,9 @@ public class LoginServiceImpl implements ILoginService {
         String password = loginForm.getPassword();
 
         // 查询用户信息
-        QueryWrapper query = new QueryWrapper();
-        query.where(SysUserTableDef.SYS_USER.USERNAME.eq(username));
-        SysUser user = userMapper.selectOneByQuery(query);
+        LambdaQueryWrapper<SysUser> query = new LambdaQueryWrapper<>();
+        query.eq(SysUser::getUsername, username);
+        SysUser user = userMapper.selectOne(query);
 
         // 检测用户是否存在
         if (user == null) {

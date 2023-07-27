@@ -1,8 +1,8 @@
 package com.zbx.entity;
 
-import com.mybatisflex.annotation.Column;
-import com.mybatisflex.annotation.Id;
-import com.mybatisflex.annotation.KeyType;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -14,31 +14,31 @@ public class BaseEntity implements Serializable {
     /**
      * id
      */
-    @Id(keyType = KeyType.Auto)
+    @TableId(value = "Id", type = IdType.AUTO)
     private Integer id;
 
     /**
      * 创建人
      */
-    @Column("CreateBy")
+    @TableField("CreateBy")
     private String createBy;
 
     /**
      * 创建时间
      */
-    @Column("CreateTime")
+    @TableField("CreateTime")
     private LocalDateTime createTime;
 
     /**
      * 最后修改人
      */
-    @Column("UpdateBy")
+    @TableField("UpdateBy")
     private String updateBy;
 
     /**
      * 最后修改时间
      */
-    @Column("UpdateTime")
+    @TableField("UpdateTime")
     private LocalDateTime updateTime;
 
 }

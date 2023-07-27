@@ -1,10 +1,8 @@
 package com.zbx.system.pojo.entity;
 
-import com.mybatisflex.annotation.Column;
-import com.mybatisflex.annotation.Table;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.zbx.entity.BaseEntity;
-import com.zbx.system.config.mybatisFlex.DataCreateListener;
-import com.zbx.system.config.mybatisFlex.DataUpdateListener;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -15,19 +13,19 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @ToString(callSuper = true)
-@Table(value = "SysUser", onInsert = DataCreateListener.class, onUpdate = DataUpdateListener.class)
+@TableName(value = "SysUser")
 public class SysUser extends BaseEntity {
 
     /**
      * 用户名
      */
-    @Column("Username")
+    @TableField("Username")
     private String username;
 
     /**
      * 密码
      */
-    @Column("Password")
+    @TableField("Password")
     private String password;
 
 }

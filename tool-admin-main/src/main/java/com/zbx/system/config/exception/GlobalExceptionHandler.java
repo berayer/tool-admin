@@ -20,7 +20,7 @@ public class GlobalExceptionHandler {
         nle.printStackTrace();
 
         // 判断场景值，定制化异常信息
-        String message = "";
+        String message;
         if (nle.getType().equals(NotLoginException.NOT_TOKEN)) {
             message = "未能读取到有效 token";
         } else if (nle.getType().equals(NotLoginException.INVALID_TOKEN)) {

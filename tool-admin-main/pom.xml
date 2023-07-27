@@ -23,7 +23,7 @@
         <dependency>
             <groupId>com.zbx</groupId>
             <artifactId>tool-admin-common</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${tool.admin.version}</version>
         </dependency>
 
         <!--    SpringBoot web模块    -->
@@ -36,7 +36,13 @@
         <dependency>
             <groupId>cn.dev33</groupId>
             <artifactId>sa-token-spring-boot3-starter</artifactId>
-            <version>1.35.0.RC</version>
+            <version>${sa.token.version}</version>
+        </dependency>
+
+        <!--    SpringBoot 参数校验    -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
 
         <!--    SpringBoot Actuator    -->
@@ -49,14 +55,21 @@
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
-            <version>5.8.16</version>
+            <version>${hutool.version}</version>
         </dependency>
 
-        <!--    Mybatis Flex    -->
+        <!--    Mysql 驱动    -->
         <dependency>
-            <groupId>com.mybatis-flex</groupId>
-            <artifactId>mybatis-flex-spring-boot-starter</artifactId>
-            <version>1.5.3</version>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
+        </dependency>
+
+        <!--    MybatisPlus    -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>${mybatis.plus.version}</version>
         </dependency>
 
     </dependencies>
