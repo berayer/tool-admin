@@ -1,5 +1,6 @@
 package com.zbx.entity;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -20,25 +21,25 @@ public class BaseEntity implements Serializable {
     /**
      * 创建人
      */
-    @TableField("CreateBy")
+    @TableField(value = "CreateBy", fill = FieldFill.INSERT)
     private String createBy;
 
     /**
      * 创建时间
      */
-    @TableField("CreateTime")
+    @TableField(value = "CreateTime", fill = FieldFill.INSERT)
     private LocalDateTime createTime;
 
     /**
      * 最后修改人
      */
-    @TableField("UpdateBy")
+    @TableField(value = "UpdateBy", fill = FieldFill.UPDATE)
     private String updateBy;
 
     /**
      * 最后修改时间
      */
-    @TableField("UpdateTime")
+    @TableField(value = "UpdateTime", fill = FieldFill.UPDATE)
     private LocalDateTime updateTime;
 
 }

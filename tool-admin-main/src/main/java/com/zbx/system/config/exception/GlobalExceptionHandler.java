@@ -4,8 +4,12 @@ import cn.dev33.satoken.exception.NotLoginException;
 import cn.dev33.satoken.util.SaResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import javax.security.auth.login.LoginException;
 
 @Slf4j
 @RestControllerAdvice
@@ -14,10 +18,11 @@ public class GlobalExceptionHandler {
 
     // 拦截项目中的NotLoginException异常
     @ExceptionHandler(NotLoginException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
     public SaResult handlerNotLoginException(NotLoginException nle) {
 
         // 打印堆栈，以供调试
-        nle.printStackTrace();
+//        nle.printStackTrace();
 
         // 判断场景值，定制化异常信息
         String message;
@@ -41,6 +46,24 @@ public class GlobalExceptionHandler {
 
         // 返回给前端
         return SaResult.error(message);
+    }
+
+    /**
+     * 登陆异常处理
+     */
+    @ExceptionHandler(LoginException.class)
+    public SaResult loginException(LoginException e) {
+        return SaResult.error(e.getMessage());
+    }
+
+    /**
+     * 未处理的异常捕捉
+     */
+    @ExceptionHandler(Exception.class)
+    public SaResult exception(Exception e) {
+        // 打印异常信息
+        e.printStackTrace();
+        return SaResult.error("发生未处理异常");
     }
 
 }

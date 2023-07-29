@@ -8,10 +8,12 @@ import com.zbx.system.pojo.entity.SysUser;
 import com.zbx.system.pojo.form.LoginForm;
 import com.zbx.system.service.ILoginService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.security.auth.login.LoginException;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class LoginServiceImpl implements ILoginService {
@@ -22,6 +24,7 @@ public class LoginServiceImpl implements ILoginService {
     public String login(LoginForm loginForm) throws LoginException {
         String username = loginForm.getUsername();
         String password = loginForm.getPassword();
+        log.info("用户尝试登陆: username={}, password={}, rememberMe={}", username, password, loginForm.isRememberMe());
 
         // 查询用户信息
         LambdaQueryWrapper<SysUser> query = new LambdaQueryWrapper<>();
@@ -40,7 +43,9 @@ public class LoginServiceImpl implements ILoginService {
 
         // 用户登录
         StpUtil.login(user.getUsername(), loginForm.isRememberMe());
+        String token = StpUtil.getTokenValue();
         // 返回用户的token值
-        return StpUtil.getTokenValue();
+        log.info("用户登陆成功: username={}, token={}", username, token);
+        return token;
     }
 }

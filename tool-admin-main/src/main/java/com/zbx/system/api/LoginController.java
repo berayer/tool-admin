@@ -6,6 +6,7 @@ import com.zbx.system.service.ILoginService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.security.auth.login.LoginException;
@@ -17,7 +18,7 @@ public class LoginController {
     private final ILoginService loginService;
 
     @PostMapping("/login")
-    public SaResult login(@Validated LoginForm loginForm) throws LoginException {
+    public SaResult login(@Validated @RequestBody LoginForm loginForm) throws LoginException {
         String token = loginService.login(loginForm);
         return SaResult.ok(token);
     }
