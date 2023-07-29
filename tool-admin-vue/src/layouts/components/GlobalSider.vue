@@ -13,7 +13,7 @@
 
 <script setup lang="ts">
 import SiderMenu from './SiderMenu.vue'
-import { useAppStore } from '@/store'
+import {useAppStore} from '@/store'
 
 const appStore = useAppStore()
 </script>

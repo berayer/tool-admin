@@ -4,30 +4,31 @@
     <div class="flex h-10 items-center bg-gray-200 px-3">
       <!-- 左侧按钮组 -->
       <div class="flex flex-1 justify-start space-x-1">
-        <n-button quaternary circle :focusable="false" @click="$emit('addClick')">
+        <!-- 新增按钮 -->
+        <n-button quaternary circle :focusable="false">
           <template #icon>
             <Icon name="mdi:plus" :size="18" />
           </template>
         </n-button>
-
+        <!-- 删除按钮 -->
         <n-button quaternary circle :focusable="false">
           <template #icon>
             <Icon name="mdi:delete" :size="18" />
           </template>
         </n-button>
-
+        <!-- 刷新按钮 -->
         <n-button quaternary circle :focusable="false">
           <template #icon>
             <Icon name="mdi:refresh" :size="18" />
           </template>
         </n-button>
-
+        <!-- 搜索按钮 -->
         <n-button quaternary circle :focusable="false">
           <template #icon>
             <Icon name="mdi:magnify" :size="18" />
           </template>
         </n-button>
-
+        <!-- 更多菜单 -->
         <n-button quaternary circle :focusable="false">
           <template #icon>
             <Icon name="mdi:dots-vertical" :size="18" />
@@ -36,9 +37,11 @@
       </div>
       <!-- 右侧菜单组 -->
       <div class="flex flex-1 items-center justify-end space-x-2">
+        <!-- 总行数 -->
         <span class="text-xs">行: {{ data.length }}</span>
+        <!-- 分割线 -->
         <n-divider vertical />
-
+        <!-- 表格列设置 -->
         <n-popover trigger="click" placement="bottom" raw :show-arrow="false" style="z-index: 999">
           <template #trigger>
             <n-button quaternary circle :focusable="false">
@@ -79,15 +82,36 @@
       </div>
     </div>
     <!-- 数据表格 -->
-    <n-data-table v-bind="$attrs"> </n-data-table>
+    <n-data-table
+      :on-scroll="scrollTo"
+      :columns="columns"
+      :data="data"
+      :row-key="(row:any) => row.id"
+      max-height="720px"
+      :loading="loading"
+    >
+    </n-data-table>
   </div>
 </template>
 
 <script setup lang="ts">
-import {DataTableProps, NCheckbox} from 'naive-ui'
-import {useAttrs} from 'vue'
-import Icon from './Icon.vue'
+import { DataTableProps, NCheckbox } from 'naive-ui'
+import Icon from '../Icon.vue'
 import draggable from 'vuedraggable'
+import { MTableConfig } from '.'
+import { debounce } from 'lodash'
+
+defineOptions({
+  name: 'MTable'
+})
+
+type ColumnsOptions = {
+  key: string | number
+  label: string
+  show: boolean
+}
+// 列配置数据,动态修改
+const columnsOptions = ref<ColumnsOptions[]>([])
 
 /**
  * @description 继承类型会导致TS报错
@@ -95,25 +119,19 @@ import draggable from 'vuedraggable'
  */
 interface Props extends /* @vue-ignore */ DataTableProps {
   onDeleteSelect?: () => void
+  tableConfig: MTableConfig
 }
 
-defineProps<Props>()
-defineEmits<{
-  addClick: []
-}>()
+const prop = defineProps<Props>()
 
-const attrs = useAttrs()
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const data = (attrs.data as any[]) || []
-const columns = attrs.columns as any[]
-const columnsOptions = ref<any[]>([])
-for (let i = 0; i < columns.length; i++) {
-  if (columns[i].key) {
-    columnsOptions.value.push({
-      key: columns[i].key,
-      title: columns[i].title,
-      show: true
-    })
+/**
+ * 滚动加载
+ * 当移动到底部时,自动加载下一页数据
+ */
+const scrollTo = debounce((e: Event) => {
+  const target = e.target as HTMLElement
+  if (target.scrollHeight - target.offsetHeight - target.scrollTop < 100) {
+    prop.config.loadData()
   }
-}
+}, 200)
 </script>

@@ -60,6 +60,7 @@ public class GlobalExceptionHandler {
      * 未处理的异常捕捉
      */
     @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public SaResult exception(Exception e) {
         // 打印异常信息
         e.printStackTrace();

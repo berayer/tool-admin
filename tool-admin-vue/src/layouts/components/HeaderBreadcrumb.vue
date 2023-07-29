@@ -15,11 +15,11 @@
 </template>
 
 <script setup lang="ts">
-import { useRoute } from 'vue-router'
-import { useTabsStore } from '@/store'
-import type { DropdownOption } from 'naive-ui'
+import {useRoute} from 'vue-router'
+import {useTabsStore} from '@/store'
+import type {DropdownOption} from 'naive-ui'
 import Icon from '@/components/Icon.vue'
-import { router } from '@/router'
+import {router} from '@/router'
 
 const route = useRoute()
 const tabsStore = useTabsStore()

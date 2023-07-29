@@ -1,7 +1,8 @@
-import { router } from './../router/index';
+import { router } from '@/router'
+import { router } from './../router/index'
+import type { AxiosRequestConfig } from 'axios'
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Axios from 'axios'
-import type { AxiosRequestConfig } from 'axios'
 
 const http = Axios.create({
   baseURL: '/v2',
@@ -54,10 +55,11 @@ function httpErrorStatusHandle(error: any) {
         break
       case 401:
         message = '您未登录，或者登录已经超时，请先登录！'
+        router.push('/login')
         break
       case 403:
         message = '您没有权限操作！'
-        router.replace("/403")
+        router.replace('/403')
         break
       case 404:
         message = '请求地址出错:' + error.response.config.url
@@ -70,7 +72,7 @@ function httpErrorStatusHandle(error: any) {
         break
       case 500:
         message = '服务器内部错误！'
-        router.replace("/500")
+        router.replace('/500')
         break
       case 501:
         message = '服务未实现！'

@@ -71,7 +71,6 @@ public class UserController {
      * @param user 用户信息
      */
     @DeleteMapping("/del")
-    @Deprecated
     public SaResult del(@RequestBody SysUser user) {
         // 1. 检测用户id是否合法
         if (user.getId() == null) {

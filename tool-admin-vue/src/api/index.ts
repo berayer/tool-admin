@@ -34,9 +34,9 @@ export function v_menu_list() {
   })
 }
 
-export function v_userMenus() {
+export function v_userMenu() {
   return http({
-    url: '/menu/userMenus',
+    url: '/menu/userMenu',
     method: 'get'
   })
 }

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zbx.system.mapper.SysMenuMapper">
+
+    <select id="getUserMenuIds" resultType="java.lang.Integer">
+        select
+            b.MenuId
+        from
+            SysUserRole a
+                join SysRoleMenu b on a.RoleId = b.RoleId
+        where
+            a.UserId = #{userId}
+    </select>
+
+</mapper>

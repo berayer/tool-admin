@@ -12,11 +12,11 @@
 import GlobalContent from './components/GlobalContent.vue'
 import GlobalHeader from './components/GlobalHeader.vue'
 import GlobalSider from './components/GlobalSider.vue'
-import { useTabsStore } from '@/store'
-import { getFirstPath, loadAsyncRoutes } from '@/utils/router'
-import { useRoute } from 'vue-router'
-import { router } from '@/router'
-import { v_userMenus } from '@/api'
+import {useTabsStore} from '@/store'
+import {getFirstPath, loadAsyncRoutes} from '@/utils/router'
+import {useRoute} from 'vue-router'
+import {router} from '@/router'
+import {v_userMenu} from '@/api'
 
 const tabsStore = useTabsStore()
 const route = useRoute()
@@ -24,10 +24,10 @@ const route = useRoute()
 /**
  * 从后台加载用户菜单
  */
-v_userMenus()
+v_userMenu()
   .then((res) => {
     loadAsyncRoutes(res.data)
-    // tabsStore.menu = []
+    tabsStore.menu.length = 0
     tabsStore.menu.push(...res.data)
     goPage()
   })

@@ -1,4 +1,4 @@
-import type { Router } from 'vue-router'
+import type {Router} from 'vue-router'
 
 /**
  * 路由守卫函数

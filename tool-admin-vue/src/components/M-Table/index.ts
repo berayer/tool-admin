@@ -2,7 +2,7 @@ import http from '@/utils/request'
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { DataTableColumns } from 'naive-ui'
 
-export class DataTable {
+export class MTableConfig {
   private api: ApiRequest
   columns: DataTableColumns
   data = ref<any[]>([])

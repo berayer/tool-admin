@@ -55,5 +55,5 @@
 </template>
 
 <script setup lang="ts">
-import { OrderTypeSale, OrderStatus, MonthSale } from './echarts'
+import {MonthSale, OrderStatus, OrderTypeSale} from './echarts'
 </script>

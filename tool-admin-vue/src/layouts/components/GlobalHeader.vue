@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { useAppStore } from '@/store'
+import {useAppStore} from '@/store'
 import HeaderBreadcrumb from './HeaderBreadcrumb.vue'
 
 const appStore = useAppStore()

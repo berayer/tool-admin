@@ -1,18 +1,17 @@
 <template>
   <n-modal
     style="width: 400px"
-    :show="show"
+    :show="state.show"
     preset="dialog"
-    :title="type == 'add' ? '新增' : '修改'"
-    :type="type == 'add' ? 'info' : 'warning'"
+    :title="state.type == 'add' ? '新增' : '修改'"
+    :type="state.type == 'add' ? 'info' : 'warning'"
     :mask-closable="false"
     negative-text="取消"
     positive-text="保存"
-    :on-update-show="(v) => $emit('update:show', v)"
   >
     <n-form class="my-6" label-width="80px">
       <n-form-item label="角色名称">
-        <n-input></n-input>
+        <n-input v-model:value="data.name"></n-input>
       </n-form-item>
 
       <n-form-item label="权限">
@@ -29,8 +28,27 @@
 <script setup lang="ts">
 import { appMenu } from '@/mock'
 
-defineProps<{ show: boolean; type: 'add' | 'edit' }>()
-defineEmits<{
-  'update:show': [show: boolean]
-}>()
+const state = reactive({
+  show: false,
+  type: ''
+})
+const data = ref<anyObj>({})
+
+/**
+ * 打开弹窗
+ * @param type 类型 add:新增 edit:编辑
+ * @param obj 对象数据
+ */
+function show(type: 'add' | 'edit', obj: anyObj) {
+  data.value = obj
+  state.show = true
+  state.type = type
+}
+
+/**
+ * 暴露方法
+ */
+defineExpose({
+  show
+})
 </script>

@@ -1,5 +1,5 @@
-import { defineConfig, loadEnv } from 'vite'
-import { setupVitePlugins, getSrcPath } from './build'
+import {defineConfig, loadEnv} from 'vite'
+import {getSrcPath, setupVitePlugins} from './build'
 
 export default defineConfig(({ mode }) => {
   // 获取vite 环境变量

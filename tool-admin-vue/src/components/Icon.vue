@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import { Icon as iconify } from '@iconify/vue'
+import {Icon as iconify} from '@iconify/vue'
 
 interface Props {
   name: string

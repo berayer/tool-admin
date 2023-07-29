@@ -10,6 +10,7 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     DataTable: typeof import('./../components/DataTable.vue')['default']
+    DTable: typeof import('./../components/DTable.vue')['default']
     Icon: typeof import('./../components/Icon.vue')['default']
     MTable: typeof import('./../components/MTable.vue')['default']
     NaiveProvider: typeof import('./../components/NaiveProvider.vue')['default']

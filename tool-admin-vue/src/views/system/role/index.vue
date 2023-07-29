@@ -4,8 +4,8 @@
 </template>
 
 <script setup lang="ts">
-import type { DataTableColumns } from 'naive-ui'
-import { NButton } from 'naive-ui'
+import type {DataTableColumns} from 'naive-ui'
+import {NButton} from 'naive-ui'
 import AddOrEdit from './AddOrEdit.vue'
 
 const state = reactive({

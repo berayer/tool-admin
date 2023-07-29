@@ -3,9 +3,9 @@
 </template>
 
 <script setup lang="ts">
-import type { DataTableColumns } from 'naive-ui'
-import { NSwitch, NButton } from 'naive-ui'
-import { ApiRequest, DataTable } from '@/utils/MTable'
+import type {DataTableColumns} from 'naive-ui'
+import {NButton, NSwitch} from 'naive-ui'
+import {ApiRequest, DataTable} from '@/utils/MTable'
 
 const columns: DataTableColumns = [
   {
@@ -120,14 +120,6 @@ function deleteRow(row: anyObj) {
     }
   })
 }
-
-// function loadUsers(page: number) {
-//   v_user_list({ page: page, size: 20 }).then((res) => {
-//     // console.log(res.data.records)
-//     const list = res.data.records as never[]
-//     data.userList.push(...list)
-//   })
-// }
 
 const userTable = new DataTable(columns, new ApiRequest('/user'))
 provide('m-table', userTable)

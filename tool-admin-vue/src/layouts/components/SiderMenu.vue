@@ -11,11 +11,11 @@
 </template>
 
 <script setup lang="ts">
-import type { MenuOption } from 'naive-ui'
+import type {MenuOption} from 'naive-ui'
 import Icon from '@/components/Icon.vue'
-import { useAppStore, useTabsStore } from '@/store'
-import { useRoute } from 'vue-router'
-import { router } from '@/router'
+import {useAppStore, useTabsStore} from '@/store'
+import {useRoute} from 'vue-router'
+import {router} from '@/router'
 
 const appStore = useAppStore()
 const tabsStore = useTabsStore()

@@ -7,8 +7,8 @@
 </template>
 
 <script setup lang="ts">
-import { zhCN } from 'naive-ui'
-import type { GlobalThemeOverrides } from 'naive-ui'
+import type {GlobalThemeOverrides} from 'naive-ui'
+import {zhCN} from 'naive-ui'
 
 const themeOverrides: GlobalThemeOverrides = {
   common: {

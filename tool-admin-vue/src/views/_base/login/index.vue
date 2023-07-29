@@ -36,9 +36,9 @@
 </template>
 
 <script setup lang="ts">
-import { FormRules, FormItemRule, FormInst } from 'naive-ui'
-import { v_login } from '@/api'
-import { router } from '@/router'
+import {FormInst, FormItemRule, FormRules} from 'naive-ui'
+import {v_login} from '@/api'
+import {router} from '@/router'
 
 // 状态变量
 const state = reactive({

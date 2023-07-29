@@ -7,9 +7,9 @@
 
 <script setup lang="ts">
 // import { v_menu_list } from '@/api'
-import type { DataTableColumns } from 'naive-ui'
+import type {DataTableColumns} from 'naive-ui'
 import Icon from '@/components/Icon.vue'
-import { DataTable, ApiRequest } from '@/utils/MTable'
+import {ApiRequest, DataTable} from '@/utils/MTable'
 import MenuForm from './MenuForm.vue'
 
 const showForm = ref(false)

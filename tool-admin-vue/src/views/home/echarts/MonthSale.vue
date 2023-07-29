@@ -6,7 +6,7 @@
 
 <script setup lang="ts">
 import VChart from 'vue-echarts'
-import { EChartsOption } from 'echarts'
+import {EChartsOption} from 'echarts'
 
 const option = ref<EChartsOption>({
   xAxis: {

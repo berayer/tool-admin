@@ -1,4 +1,4 @@
-import { defineStore } from 'pinia'
+import {defineStore} from 'pinia'
 
 interface AppState {
   /** 侧边栏折叠状态 */
