@@ -1,12 +1,16 @@
 <template>
-  <m-table></m-table>
+  <m-table :columns="columns" :row-key="(i) => i.id" />
 </template>
 
 <script setup lang="ts">
-import type {DataTableColumns} from 'naive-ui'
-import {NButton, NSwitch} from 'naive-ui'
-import {ApiRequest, DataTable} from '@/utils/MTable'
+import type { DataTableColumns } from 'naive-ui'
+import { NButton, NSwitch } from 'naive-ui'
+// import {ApiRequest, DataTable} from '@/utils/MTable'
 
+// import {useStore} from 'vuex'
+// import {useRouter} from 'vue-router''
+
+// 表格列配置
 const columns: DataTableColumns = [
   {
     type: 'selection',
@@ -16,42 +20,25 @@ const columns: DataTableColumns = [
   {
     title: '序号',
     key: 'no',
-    render: (_r, index) => h('span', index),
+    render: (_r, index) => h('span', index + 1),
     width: 55,
     align: 'center'
   },
   {
     title: '用户名',
     key: 'username',
-    align: 'center',
     ellipsis: true,
     resizable: true
-  },
-  {
-    title: '昵称',
-    key: 'nickName',
-    align: 'center',
-    ellipsis: true,
-    resizable: true
-  },
-  {
-    title: '是否启用',
-    key: 'enabled',
-    render: (row: anyObj) => h(NSwitch, { defaultValue: row.enabled, disabled: true }),
-    width: 80,
-    align: 'center'
   },
   {
     title: '创建人',
     key: 'createBy',
-    align: 'center',
     ellipsis: true,
     resizable: true
   },
   {
     title: '创建时间',
     key: 'createTime',
-    align: 'center',
     width: 165,
     ellipsis: true,
     resizable: true
@@ -59,14 +46,12 @@ const columns: DataTableColumns = [
   {
     title: '最后修改人',
     key: 'updateBy',
-    align: 'center',
     ellipsis: true,
     resizable: true
   },
   {
     title: '最后修改时间',
     key: 'updateTime',
-    align: 'center',
     width: 165,
     ellipsis: true,
     resizable: true
@@ -74,7 +59,7 @@ const columns: DataTableColumns = [
   {
     title: '操作',
     key: 'button',
-    render: (row) =>
+    render: () =>
       h('div', [
         h(
           NButton,
@@ -82,8 +67,8 @@ const columns: DataTableColumns = [
             size: 'small',
             quaternary: true,
             type: 'warning',
-            focusable: false,
-            onClick: () => updateRow(row)
+            focusable: false
+            // onClick: () => updateRow(row)
           },
           { default: () => '修改' }
         ),
@@ -93,8 +78,8 @@ const columns: DataTableColumns = [
             size: 'small',
             quaternary: true,
             type: 'error',
-            focusable: false,
-            onClick: () => deleteRow(row)
+            focusable: false
+            // onClick: () => deleteRow(row)
           },
           { default: () => '删除' }
         )
@@ -105,23 +90,23 @@ const columns: DataTableColumns = [
   }
 ]
 
-function updateRow(row: anyObj) {
-  console.log(row)
-}
+// function updateRow(row: anyObj) {
+//   console.log(row)
+// }
 
-function deleteRow(row: anyObj) {
-  window.$dialog.warning({
-    title: '警告',
-    content: `确认删除用户: ${row.username}?`,
-    positiveText: '确定',
-    negativeText: '取消',
-    onPositiveClick: () => {
-      console.log('删除成功')
-    }
-  })
-}
+// function deleteRow(row: anyObj) {
+//   window.$dialog.warning({
+//     title: '警告',
+//     content: `确认删除用户: ${row.username}?`,
+//     positiveText: '确定',
+//     negativeText: '取消',
+//     onPositiveClick: () => {
+//       console.log('删除成功')
+//     }
+//   })
+// }
 
-const userTable = new DataTable(columns, new ApiRequest('/user'))
-provide('m-table', userTable)
-userTable.loadData()
+// const userTable = new DataTable(columns, new ApiRequest('/user'))
+// provide('m-table', userTable)
+// userTable.loadData()
 </script>

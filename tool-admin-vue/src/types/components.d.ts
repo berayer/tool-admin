@@ -12,7 +12,7 @@ declare module '@vue/runtime-core' {
     DataTable: typeof import('./../components/DataTable.vue')['default']
     DTable: typeof import('./../components/DTable.vue')['default']
     Icon: typeof import('./../components/Icon.vue')['default']
-    MTable: typeof import('./../components/MTable.vue')['default']
+    MTable: typeof import('./../components/M-Table/index.vue')['default']
     NaiveProvider: typeof import('./../components/NaiveProvider.vue')['default']
     NBreadcrumb: typeof import('naive-ui')['NBreadcrumb']
     NBreadcrumbItem: typeof import('naive-ui')['NBreadcrumbItem']

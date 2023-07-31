@@ -82,14 +82,7 @@
       </div>
     </div>
     <!-- 数据表格 -->
-    <n-data-table
-      :on-scroll="scrollTo"
-      :columns="columns"
-      :data="data"
-      :row-key="(row:any) => row.id"
-      max-height="720px"
-      :loading="loading"
-    >
+    <n-data-table :on-scroll="scrollTo" max-height="720px" v-bind="$.attrs" :data="data">
     </n-data-table>
   </div>
 </template>
@@ -98,8 +91,8 @@
 import { DataTableProps, NCheckbox } from 'naive-ui'
 import Icon from '../Icon.vue'
 import draggable from 'vuedraggable'
-import { MTableConfig } from '.'
 import { debounce } from 'lodash'
+import http from '@/utils/request'
 
 defineOptions({
   name: 'MTable'
@@ -112,17 +105,28 @@ type ColumnsOptions = {
 }
 // 列配置数据,动态修改
 const columnsOptions = ref<ColumnsOptions[]>([])
+const data = ref<anyObj[]>([])
+const attrs = useAttrs()
+console.log(attrs.columns)
 
 /**
  * @description 继承类型会导致TS报错
  * @link https://github.com/tusen-ai/naive-ui/issues/4810
  */
 interface Props extends /* @vue-ignore */ DataTableProps {
-  onDeleteSelect?: () => void
-  tableConfig: MTableConfig
+  page?: boolean
 }
 
-const prop = defineProps<Props>()
+withDefaults(defineProps<Props>(), {
+  page: false
+})
+
+http({
+  url: '/user/search'
+}).then((res) => {
+  data.value.push(...res.data)
+  console.log(res)
+})
 
 /**
  * 滚动加载
@@ -131,7 +135,7 @@ const prop = defineProps<Props>()
 const scrollTo = debounce((e: Event) => {
   const target = e.target as HTMLElement
   if (target.scrollHeight - target.offsetHeight - target.scrollTop < 100) {
-    prop.config.loadData()
+    // prop.config.loadData()
   }
 }, 200)
 </script>
