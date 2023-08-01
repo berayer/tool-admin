@@ -5,3 +5,8 @@ spring:
     active: corp
 sa-token:
   token-style: tik
+jasypt:
+  encryptor:
+    # 3.0更换了安全协议,不配置下面选项会报错 https://blog.51cto.com/no8g/6344380
+    algorithm: PBEWithMD5AndDES
+    iv-generator-classname: org.jasypt.iv.NoIvGenerator
