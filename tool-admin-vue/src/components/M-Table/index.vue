@@ -69,7 +69,7 @@
               handle=".colMove"
             >
               <template #item="{ element }">
-                <div class="flex w-full items-center justify-between py-2">
+                <div v-if="element.key" class="flex w-full items-center justify-between py-2">
                   <n-checkbox v-model:checked="element.show" class="mr-4">
                     <span>{{ element.title }}</span>
                   </n-checkbox>
@@ -82,7 +82,13 @@
       </div>
     </div>
     <!-- 数据表格 -->
-    <n-data-table :on-scroll="scrollTo" max-height="720px" v-bind="$.attrs" :data="data">
+    <n-data-table
+      :on-scroll="scrollTo"
+      max-height="720px"
+      v-bind="$.attrs"
+      :data="data"
+      :columns="(dataTableColumns as any)"
+    >
     </n-data-table>
   </div>
 </template>
@@ -98,16 +104,31 @@ defineOptions({
   name: 'MTable'
 })
 
-type ColumnsOptions = {
-  key: string | number
-  label: string
-  show: boolean
-}
 // 列配置数据,动态修改
-const columnsOptions = ref<ColumnsOptions[]>([])
+const columnsOptions = ref<anyObj[]>([])
+const dataTableColumns = ref<anyObj[]>([])
 const data = ref<anyObj[]>([])
 const attrs = useAttrs()
-console.log(attrs.columns)
+
+/**
+ * 将传进来的列配置添加到columnsOptions并且填写额外选项
+ */
+const arrs = attrs.columns as anyObj[]
+arrs.forEach((item) => {
+  item.show = true
+  columnsOptions.value.push(item)
+  dataTableColumns.value.push(item)
+})
+/**
+ * 监听列配置数组,发生改变时重新生成列
+ */
+watch(
+  columnsOptions,
+  () => {
+    dataTableColumns.value = columnsOptions.value.filter((item) => !item.show === false)
+  },
+  { deep: true }
+)
 
 /**
  * @description 继承类型会导致TS报错
