@@ -3,6 +3,15 @@ spring:
     name: tool-admin-main
   profiles:
     active: corp
+  # JSON格式化配置
+  jackson:
+    # 日期格式化格式
+    date-format: yyyy-MM-dd HH:mm:ss
+    # 时区
+    time-zone: Asia/Shanghai
+    # 序列化配置
+    serialization:
+      write-dates-as-timestamps: false
 sa-token:
   token-style: tik
 jasypt:

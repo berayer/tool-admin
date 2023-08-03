@@ -1,15 +1,14 @@
 <template>
-  <m-table :columns="columns" :row-key="(i) => i.id" />
+  <m-table base-url="/user" :columns="columns" :row-key="(i) => i.id" @add-click="addClick" />
+  <add-form ref="addForm" />
 </template>
 
 <script setup lang="ts">
 import type { DataTableColumns } from 'naive-ui'
-import { NButton, NSwitch } from 'naive-ui'
-// import {ApiRequest, DataTable} from '@/utils/MTable'
+import { NButton } from 'naive-ui'
+import AddForm from './AddForm.vue'
 
-// import {useStore} from 'vuex'
-// import {useRouter} from 'vue-router''
-
+const addForm = ref<typeof AddForm | null>()
 // 表格列配置
 const columns: DataTableColumns = [
   {
@@ -59,7 +58,7 @@ const columns: DataTableColumns = [
   {
     title: '操作',
     key: 'button',
-    render: () =>
+    render: (row) =>
       h('div', [
         h(
           NButton,
@@ -67,8 +66,8 @@ const columns: DataTableColumns = [
             size: 'small',
             quaternary: true,
             type: 'warning',
-            focusable: false
-            // onClick: () => updateRow(row)
+            focusable: false,
+            onClick: () => addForm.value!.show('edit', row)
           },
           { default: () => '修改' }
         ),
@@ -78,8 +77,8 @@ const columns: DataTableColumns = [
             size: 'small',
             quaternary: true,
             type: 'error',
-            focusable: false
-            // onClick: () => deleteRow(row)
+            focusable: false,
+            onClick: () => deleteRow(row)
           },
           { default: () => '删除' }
         )
@@ -90,23 +89,19 @@ const columns: DataTableColumns = [
   }
 ]
 
-// function updateRow(row: anyObj) {
-//   console.log(row)
-// }
+const addClick = () => {
+  addForm.value!.show('add', {})
+}
 
-// function deleteRow(row: anyObj) {
-//   window.$dialog.warning({
-//     title: '警告',
-//     content: `确认删除用户: ${row.username}?`,
-//     positiveText: '确定',
-//     negativeText: '取消',
-//     onPositiveClick: () => {
-//       console.log('删除成功')
-//     }
-//   })
-// }
-
-// const userTable = new DataTable(columns, new ApiRequest('/user'))
-// provide('m-table', userTable)
-// userTable.loadData()
+function deleteRow(row: anyObj) {
+  window.$dialog.warning({
+    title: '警告',
+    content: `确认是否删除用户: ${row.username}`,
+    positiveText: '确定',
+    negativeText: '取消',
+    onPositiveClick: () => {
+      console.log('删除成功')
+    }
+  })
+}
 </script>

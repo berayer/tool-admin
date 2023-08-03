@@ -22,6 +22,9 @@ const themeOverrides: GlobalThemeOverrides = {
   },
   Divider: {
     color: 'rgb(160 160 160)'
+  },
+  DataTable:{
+    tdPaddingMedium: '8px'
   }
 }
 </script>

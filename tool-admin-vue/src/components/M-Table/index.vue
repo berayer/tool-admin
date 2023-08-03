@@ -5,7 +5,7 @@
       <!-- 左侧按钮组 -->
       <div class="flex flex-1 justify-start space-x-1">
         <!-- 新增按钮 -->
-        <n-button quaternary circle :focusable="false">
+        <n-button quaternary circle :focusable="false" @click="$emit('addClick')">
           <template #icon>
             <Icon name="mdi:plus" :size="18" />
           </template>
@@ -83,11 +83,15 @@
     </div>
     <!-- 数据表格 -->
     <n-data-table
+      bordered
       :on-scroll="scrollTo"
       max-height="720px"
       v-bind="$.attrs"
       :data="data"
       :columns="(dataTableColumns as any)"
+      :single-line="false"
+      striped
+      :loading="state.loading"
     >
     </n-data-table>
   </div>
@@ -109,6 +113,9 @@ const columnsOptions = ref<anyObj[]>([])
 const dataTableColumns = ref<anyObj[]>([])
 const data = ref<anyObj[]>([])
 const attrs = useAttrs()
+const state = reactive({
+  loading: false
+})
 
 /**
  * 将传进来的列配置添加到columnsOptions并且填写额外选项
@@ -136,18 +143,26 @@ watch(
  */
 interface Props extends /* @vue-ignore */ DataTableProps {
   page?: boolean
+  baseUrl: string
 }
 
-withDefaults(defineProps<Props>(), {
+defineEmits(['addClick'])
+const prop = withDefaults(defineProps<Props>(), {
   page: false
 })
 
+// 从后台加载数据
+state.loading = true
 http({
-  url: '/user/search'
-}).then((res) => {
-  data.value.push(...res.data)
-  console.log(res)
+  url: prop.baseUrl + '/search'
 })
+  .then((res) => {
+    data.value.push(...res.data)
+    console.log(res)
+  })
+  .finally(() => {
+    state.loading = false
+  })
 
 /**
  * 滚动加载

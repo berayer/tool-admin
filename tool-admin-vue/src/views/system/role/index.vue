@@ -1,12 +1,10 @@
 <template>
-  <data-table :columns="columns" :data="datas" :row-key="(row) => row.id" @add-click="addClick" />
-  <AddOrEdit v-model:show="state.editModal" :type="(state.editType as any)" />
+  <m-table base-url="/role" :columns="columns" :row-key="(row) => row.id" />
 </template>
 
 <script setup lang="ts">
-import type {DataTableColumns} from 'naive-ui'
-import {NButton} from 'naive-ui'
-import AddOrEdit from './AddOrEdit.vue'
+import type { DataTableColumns } from 'naive-ui'
+import { NButton } from 'naive-ui'
 
 const state = reactive({
   editModal: false,
@@ -60,22 +58,4 @@ const columns = ref<DataTableColumns>([
       ])
   }
 ])
-const datas = ref<anyObj[]>([
-  {
-    id: 1,
-    name: '管理员',
-    createBy: 'system',
-    createTime: '2023-07-06 12:59:36'
-  },
-  {
-    id: 2,
-    name: '普通用户',
-    createBy: 'system',
-    createTime: '2023-07-06 12:59:36'
-  }
-])
-function addClick() {
-  state.editModal = true
-  state.editType = 'add'
-}
 </script>
