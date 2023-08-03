@@ -10,7 +10,7 @@ interface AppState {
 export const useAppStore = defineStore('app-store', {
   state: (): AppState => ({
     siderCollapse: false,
-    siderWidth: 208,
+    siderWidth: 224,
     siderCollapseWidth: 64
   })
 })

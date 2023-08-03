@@ -28,7 +28,7 @@ function appMenuToMenuOption(menus: AppMenu[]): MenuOption[] {
     const menu: MenuOption = {
       label: item.name,
       key: item.path,
-      icon: () => h(Icon, { name: item.icon! })
+      icon: () => h(Icon, { name: item.icon!, size: 20 })
     }
     if (item.children) {
       menu.children = appMenuToMenuOption(item.children)

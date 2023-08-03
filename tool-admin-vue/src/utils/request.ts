@@ -1,5 +1,4 @@
 import { router } from '@/router'
-import { router } from './../router/index'
 import type { AxiosRequestConfig } from 'axios'
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Axios from 'axios'
