@@ -22,6 +22,12 @@ public class SysMenu extends BaseEntity {
     private Integer pid;
 
     /**
+     * 菜单标题
+     */
+    @TableField("Title")
+    private String title;
+
+    /**
      * 菜单名称
      */
     @TableField("Name")

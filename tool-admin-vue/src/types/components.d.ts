@@ -9,10 +9,9 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    Icon: typeof import('./../components/Icon.vue')['default']
     MIcon: typeof import('./../components/m-icon/index.vue')['default']
-    MTable: typeof import('./../components/M-Table/index.vue')['default']
-    NaiveProvider: typeof import('./../components/NaiveProvider.vue')['default']
+    MTable: typeof import('./../components/m-table/index.vue')['default']
+    NaiveProvider: typeof import('./../components/naive-provider/index.vue')['default']
     NBreadcrumb: typeof import('naive-ui')['NBreadcrumb']
     NBreadcrumbItem: typeof import('naive-ui')['NBreadcrumbItem']
     NButton: typeof import('naive-ui')['NButton']
@@ -40,6 +39,7 @@ declare module '@vue/runtime-core' {
     NNotificationProvider: typeof import('naive-ui')['NNotificationProvider']
     NNumberAnimation: typeof import('naive-ui')['NNumberAnimation']
     NPopover: typeof import('naive-ui')['NPopover']
+    NResult: typeof import('naive-ui')['NResult']
     NStatistic: typeof import('naive-ui')['NStatistic']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

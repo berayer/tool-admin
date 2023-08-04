@@ -11,24 +11,27 @@
 </template>
 
 <script setup lang="ts">
-import type {MenuOption} from 'naive-ui'
-import Icon from '@/components/Icon.vue'
-import {useAppStore, useTabsStore} from '@/store'
-import {useRoute} from 'vue-router'
-import {router} from '@/router'
+import type { MenuOption } from 'naive-ui'
+import MICon from '@/components/m-icon/index.vue'
+import { useAppStore, usePermissionStore } from '@/store'
+import { useRoute } from 'vue-router'
+import { router } from '@/router'
 
 const appStore = useAppStore()
-const tabsStore = useTabsStore()
+const permissionStore = usePermissionStore()
 const route = useRoute()
 const menuOptions = ref<MenuOption[]>([])
+
+const option = appMenuToMenuOption(permissionStore.asyncRoutes)
+menuOptions.value = option
 
 // 递归将后台菜单转换为N-Menu
 function appMenuToMenuOption(menus: AppMenu[]): MenuOption[] {
   return menus.map((item) => {
     const menu: MenuOption = {
-      label: item.name,
+      label: item.title,
       key: item.path,
-      icon: () => h(Icon, { name: item.icon!, size: 20 })
+      icon: () => h(MICon, { name: item.icon!, size: 20 })
     }
     if (item.children) {
       menu.children = appMenuToMenuOption(item.children)
@@ -41,12 +44,4 @@ function appMenuToMenuOption(menus: AppMenu[]): MenuOption[] {
 function handleUpdateValue(key: string) {
   router.push(key)
 }
-
-/**
- * 监听pina里的路由,发生改变时重新加载菜单
- */
-watch(tabsStore.menu, () => {
-  menuOptions.value = []
-  menuOptions.value = appMenuToMenuOption(tabsStore.menu) // 递归将前台菜单转换为N-Menu列表
-})
 </script>

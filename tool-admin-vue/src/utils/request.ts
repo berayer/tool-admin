@@ -43,6 +43,8 @@ http.interceptors.response.use(
  * @param {*} error
  */
 function httpErrorStatusHandle(error: any) {
+  console.log(error)
+
   let message = ''
   if (error && error.response) {
     switch (error.response.status) {

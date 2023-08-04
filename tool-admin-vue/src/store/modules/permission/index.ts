@@ -1,14 +1,20 @@
-import {defineStore} from 'pinia'
+import { defineStore } from 'pinia'
+import { v2_userMenu } from '@/api'
+import { loadAsyncRoutes } from '@/utils/router'
 
-interface TabsState {
-  menu: AppMenu[]
-}
-
-export const useTabsStore = defineStore('tabs-store', {
-  state: (): TabsState => ({
-    menu: []
+export const usePermissionStore = defineStore('permission-store', {
+  state: () => ({
+    asyncRoutes: []
   }),
   actions: {
+    /** 用户登陆 */
+    async buildAsyncRoutes() {
+      await v2_userMenu().then((res) => {
+        this.asyncRoutes = res.data
+      })
+      loadAsyncRoutes(this.asyncRoutes)
+    },
+
     /**
      * 获取当前菜单的上下文
      * 用户面包屑
@@ -16,7 +22,7 @@ export const useTabsStore = defineStore('tabs-store', {
      * @param menus 查找数组,如果为空,则为当前系统的路由菜单
      */
     getRouteContext(key: string, menus?: AppMenu[]): AppMenu[] {
-      if (!menus) menus = this.menu
+      if (!menus) menus = this.asyncRoutes
       let res: AppMenu[] = []
 
       for (let i = 0; i < menus.length; i++) {

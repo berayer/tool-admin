@@ -12,8 +12,8 @@
 </template>
 
 <script setup lang="ts">
-import SiderMenu from './SiderMenu.vue'
-import {useAppStore} from '@/store'
+import SiderMenu from './sider-menu.vue'
+import { useAppStore } from '@/store'
 
 const appStore = useAppStore()
 </script>

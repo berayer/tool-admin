@@ -7,31 +7,31 @@
         <!-- 新增按钮 -->
         <n-button quaternary circle :focusable="false" @click="$emit('addClick')">
           <template #icon>
-            <Icon name="mdi:plus" :size="18" />
+            <m-icon name="mdi:plus" :size="18" />
           </template>
         </n-button>
         <!-- 删除按钮 -->
         <n-button quaternary circle :focusable="false">
           <template #icon>
-            <Icon name="mdi:delete" :size="18" />
+            <m-icon name="mdi:delete" :size="18" />
           </template>
         </n-button>
         <!-- 刷新按钮 -->
         <n-button quaternary circle :focusable="false">
           <template #icon>
-            <Icon name="mdi:refresh" :size="18" />
+            <m-icon name="mdi:refresh" :size="18" />
           </template>
         </n-button>
         <!-- 搜索按钮 -->
         <n-button quaternary circle :focusable="false">
           <template #icon>
-            <Icon name="mdi:magnify" :size="18" />
+            <m-icon name="mdi:magnify" :size="18" />
           </template>
         </n-button>
         <!-- 更多菜单 -->
         <n-button quaternary circle :focusable="false">
           <template #icon>
-            <Icon name="mdi:dots-vertical" :size="18" />
+            <m-icon name="mdi:dots-vertical" :size="18" />
           </template>
         </n-button>
       </div>
@@ -46,7 +46,7 @@
           <template #trigger>
             <n-button quaternary circle :focusable="false">
               <template #icon>
-                <Icon name="mdi:view-grid-outline" :size="18" />
+                <m-icon name="mdi:view-grid-outline" :size="18" />
               </template>
             </n-button>
           </template>
@@ -73,7 +73,7 @@
                   <n-checkbox v-model:checked="element.show" class="mr-4">
                     <span>{{ element.title }}</span>
                   </n-checkbox>
-                  <Icon name="mdi:dots-grid" :size="18" class="colMove cursor-move" />
+                  <m-icon name="mdi:dots-grid" :size="18" class="colMove cursor-move" />
                 </div>
               </template>
             </draggable>
@@ -99,7 +99,6 @@
 
 <script setup lang="ts">
 import { DataTableProps, NCheckbox } from 'naive-ui'
-import Icon from '../Icon.vue'
 import draggable from 'vuedraggable'
 import { debounce } from 'lodash'
 import http from '@/utils/request'

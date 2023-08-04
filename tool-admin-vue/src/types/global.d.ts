@@ -13,9 +13,11 @@ interface Window {
 
 type AppMenu = {
   id: number
+  title: string
   name: string
   path: string
-  icon?: string
+  type: 1 | 2 | 3
+  icon: string
   children?: AppMenu[]
 }
 

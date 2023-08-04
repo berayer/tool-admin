@@ -4,7 +4,7 @@ import http from '@/utils/request'
  * 用户后台登陆接口
  * @param data 登陆表单数据
  */
-export function v_login(data: { username: string; password: string; rememberMe: boolean }) {
+export function v2_login(data: Record<string, unknown>) {
   return http({
     url: '/login',
     method: 'post',
@@ -34,7 +34,7 @@ export function v_menu_list() {
   })
 }
 
-export function v_userMenu() {
+export function v2_userMenu() {
   return http({
     url: '/menu/userMenu',
     method: 'get'

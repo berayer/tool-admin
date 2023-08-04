@@ -6,34 +6,34 @@
         :options="genOptions(item.children)"
         @select="dropdownSelect"
       >
-        <span> <Icon :name="item.icon!" :size="18" /> {{ item.name }} </span>
+        <span> <m-icon :name="item.icon!" :size="18" /> {{ item.title }} </span>
       </n-dropdown>
 
-      <span v-else><Icon :name="item.icon!" :size="18" /> {{ item.name }}</span>
+      <span v-else><m-icon :name="item.icon!" :size="18" /> {{ item.title }}</span>
     </n-breadcrumb-item>
   </n-breadcrumb>
 </template>
 
 <script setup lang="ts">
-import {useRoute} from 'vue-router'
-import {useTabsStore} from '@/store'
-import type {DropdownOption} from 'naive-ui'
-import Icon from '@/components/Icon.vue'
-import {router} from '@/router'
+import { useRoute } from 'vue-router'
+import { usePermissionStore } from '@/store'
+import type { DropdownOption } from 'naive-ui'
+import MIcon from '@/components/m-icon/index.vue'
+import { router } from '@/router'
 
 const route = useRoute()
-const tabsStore = useTabsStore()
+const permissionStore = usePermissionStore()
 
 const breadcrumbs = computed(() => {
-  return tabsStore.getRouteContext(route.fullPath)
+  return permissionStore.getRouteContext(route.fullPath)
 })
 
 function genOptions(children: AppMenu[]): DropdownOption[] {
   return children.map((item) => {
     return {
-      label: item.name,
+      label: item.title,
       key: item.path,
-      icon: () => h(Icon, { name: item.icon!, size: 18 })
+      icon: () => h(MIcon, { name: item.icon!, size: 18 })
     }
   })
 }

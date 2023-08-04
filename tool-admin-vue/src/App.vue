@@ -1,30 +1,12 @@
 <template>
-  <n-config-provider :locale="zhCN" :theme-overrides="themeOverrides">
-    <NaiveProvider>
+  <n-config-provider :locale="zhCN" :theme-overrides="DefaultTheme">
+    <naive-provider>
       <RouterView />
-    </NaiveProvider>
+    </naive-provider>
   </n-config-provider>
 </template>
 
 <script setup lang="ts">
-import type {GlobalThemeOverrides} from 'naive-ui'
-import {zhCN} from 'naive-ui'
-
-const themeOverrides: GlobalThemeOverrides = {
-  common: {
-    primaryColor: '#0084ff'
-  },
-  Layout: {
-    color: '#f3f3f3'
-  },
-  Card: {
-    borderRadius: '16px'
-  },
-  Divider: {
-    color: 'rgb(160 160 160)'
-  },
-  DataTable:{
-    tdPaddingMedium: '8px'
-  }
-}
+import { zhCN } from 'naive-ui'
+import { DefaultTheme } from '@/themes'
 </script>

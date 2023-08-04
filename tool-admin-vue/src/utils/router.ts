@@ -1,4 +1,21 @@
 import { router } from '@/router'
+import HomeLayout from '@/layouts/index.vue'
+
+/**
+ * 404页面,加载完后台菜单之后注册到路由中
+ */
+const NOT_FOUND_ROUTE = {
+  path: '/:w+',
+  redirect: '/404'
+}
+
+const HOME_LAYOUT = {
+  path: '/index',
+  name: 'HomeLayout',
+  component: HomeLayout,
+  redirect: '/home',
+  children: []
+}
 
 /**
  * 异步加载路由
@@ -6,7 +23,9 @@ import { router } from '@/router'
  */
 export function loadAsyncRoutes(menus: AppMenu[]) {
   const views = import.meta.glob('/src/views/**/index.vue')
+  router.addRoute(HOME_LAYOUT)
   addRoutes(menus, views)
+  router.addRoute(NOT_FOUND_ROUTE)
 }
 
 /**
@@ -19,11 +38,18 @@ function addRoutes(menus: AppMenu[], views: Record<string, () => Promise<unknown
     if (menus[i].children && menus[i].children!.length > 0) {
       addRoutes(menus[i].children!, views)
     } else {
-      router.addRoute('HomeLayout', {
-        path: menus[i].path,
-        component: views['/src/views' + menus[i].path + '/index.vue']
-      })
-      console.log(`loadding route: ${menus[i].path}`)
+      const component = views['/src/views' + menus[i].path + '/index.vue']
+
+      if (component) {
+        router.addRoute('HomeLayout', {
+          path: menus[i].path,
+          name: menus[i].name,
+          component: component
+        })
+        console.log(`loadding route: ${menus[i].path}`)
+      } else {
+        console.warn(`can not find vue page: /src/views${menus[i].path}/index.vue`)
+      }
     }
   }
 }
