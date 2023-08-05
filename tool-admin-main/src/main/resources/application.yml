@@ -14,6 +14,8 @@ spring:
       write-dates-as-timestamps: false
 sa-token:
   token-style: tik
+  is-share: false
+  is-concurrent: false
 jasypt:
   encryptor:
     # 3.0更换了安全协议,不配置下面选项会报错 https://blog.51cto.com/no8g/6344380

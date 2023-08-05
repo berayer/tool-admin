@@ -100,7 +100,7 @@ function deleteRow(row: anyObj) {
     positiveText: '确定',
     negativeText: '取消',
     onPositiveClick: () => {
-      console.log('删除成功')
+      alert('delete success')
     }
   })
 }

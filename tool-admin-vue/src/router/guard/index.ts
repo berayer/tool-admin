@@ -30,7 +30,7 @@ export function createRouterGuard(router: Router) {
 
     // 没有用户令牌,跳转登陆页面
     if (!userStore.token) {
-      window.$message.warning('请先登陆!')
+      // window.$message.warning('请先登陆!')
       next({
         path: '/login',
         query: { redirect: encodeURIComponent(to.fullPath) }

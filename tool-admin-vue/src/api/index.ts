@@ -40,3 +40,5 @@ export function v2_userMenu() {
     method: 'get'
   })
 }
+
+export * from './user'

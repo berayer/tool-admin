@@ -9,7 +9,7 @@ interface UserSotre {
 
 export const useUserStore = defineStore('user-store', {
   state: (): UserSotre => ({
-    token: '2z_O5ENOfdIkiQxCg_So8VtFUTH86zuxuD__',
+    token: '',
     permission: []
   }),
   actions: {
@@ -24,5 +24,6 @@ export const useUserStore = defineStore('user-store', {
           return false
         })
     }
-  }
+  },
+  persist: true
 })

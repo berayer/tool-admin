@@ -20,7 +20,7 @@ public class LoginController {
     @PostMapping("/login")
     public SaResult login(@Validated @RequestBody LoginForm loginForm) throws LoginException {
         String token = loginService.login(loginForm);
-        return SaResult.ok(token);
+        return SaResult.data(token);
     }
 
 }

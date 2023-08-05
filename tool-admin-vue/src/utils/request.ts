@@ -2,6 +2,7 @@ import { router } from '@/router'
 import type { AxiosRequestConfig } from 'axios'
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Axios from 'axios'
+import { useUserStore } from '@/store'
 
 const http = Axios.create({
   baseURL: '/v2',
@@ -13,9 +14,11 @@ const http = Axios.create({
 
 http.interceptors.request.use(
   (config) => {
+    const { token } = useUserStore()
     // 检测是否有cookie,如果没有则设置cookie = token
-    // console.log(document.cookie)
-    config.headers.satoken = '2z_O5ENOfdIkiQxCg_So8VtFUTH86zuxuD__'
+    if (token) {
+      config.headers.satoken = token
+    }
     return config
   },
   (error) => {
