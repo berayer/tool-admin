@@ -15,6 +15,7 @@ http.interceptors.request.use(
   (config) => {
     // 检测是否有cookie,如果没有则设置cookie = token
     // console.log(document.cookie)
+    config.headers.satoken = '2z_O5ENOfdIkiQxCg_So8VtFUTH86zuxuD__'
     return config
   },
   (error) => {

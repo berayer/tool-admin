@@ -22,7 +22,7 @@ const permissionStore = usePermissionStore()
 const route = useRoute()
 const menuOptions = ref<MenuOption[]>([])
 
-const option = appMenuToMenuOption(permissionStore.asyncRoutes)
+const option = appMenuToMenuOption(permissionStore.routes)
 menuOptions.value = option
 
 // 递归将后台菜单转换为N-Menu

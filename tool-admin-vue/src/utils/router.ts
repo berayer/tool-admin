@@ -13,7 +13,7 @@ const HOME_LAYOUT = {
   path: '/index',
   name: 'HomeLayout',
   component: HomeLayout,
-  redirect: '/home',
+  redirect: '/404',
   children: []
 }
 
@@ -23,6 +23,8 @@ const HOME_LAYOUT = {
  */
 export function loadAsyncRoutes(menus: AppMenu[]) {
   const views = import.meta.glob('/src/views/**/index.vue')
+  const redirect = getFirstPath(menus)
+  if (redirect) HOME_LAYOUT.redirect = redirect
   router.addRoute(HOME_LAYOUT)
   addRoutes(menus, views)
   router.addRoute(NOT_FOUND_ROUTE)
@@ -55,7 +57,7 @@ function addRoutes(menus: AppMenu[], views: Record<string, () => Promise<unknown
 }
 
 /**
- * 获取菜单数组中第一个路由
+ * 获取菜单数组中第一个路由路径
  * @param menus 菜单数组
  */
 export function getFirstPath(menus: AppMenu[]): string | undefined {

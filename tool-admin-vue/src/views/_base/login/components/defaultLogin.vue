@@ -27,7 +27,15 @@
       </n-form-item>
 
       <n-form-item :show-label="false">
-        <n-button attr-type="submit" class="w-full" :loading="state.loading"> 登陆 </n-button>
+        <n-button
+          attr-type="submit"
+          class="w-full"
+          type="success"
+          :loading="state.loading"
+          :disabled="state.loading"
+        >
+          登陆
+        </n-button>
       </n-form-item>
     </n-form>
   </n-card>
@@ -38,6 +46,7 @@ import { FormInst, FormItemRule, FormRules } from 'naive-ui'
 import { useUserStore } from '@/store'
 import { router } from '@/router'
 
+// 用户信息存储
 const userStore = useUserStore()
 // 状态变量
 const state = reactive({
@@ -80,16 +89,19 @@ const loginRules: FormRules = {
 }
 // 表单提交方法
 const loginSubmit = (e: Event) => {
+  // 阻止默认提交事件
   e.preventDefault()
-  console.log(loginForm)
+  // 禁用登陆按钮
+  state.loading = true
+  // 表单验证
   formRef.value?.validate(async (errors) => {
+    // 验证通过尝试登陆
     if (!errors) {
       const res = await userStore.login(loginForm)
-      console.log(res)
-      if (res) {
-        router.push('/index')
-      }
+      if (res) router.push('/index')
     }
+    // 验证不通过解除登陆按钮限制
+    state.loading = false
     return false
   })
 }

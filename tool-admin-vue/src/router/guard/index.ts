@@ -39,8 +39,8 @@ export function createRouterGuard(router: Router) {
     }
 
     // 如果从后台加载的路由为空,从后台加载路由
-    const { asyncRoutes } = permissionStore
-    if (asyncRoutes && asyncRoutes.length === 0) {
+    const { routes } = permissionStore
+    if (routes && routes.length === 0) {
       // 从后台加载路由
       try {
         await permissionStore.buildAsyncRoutes()
