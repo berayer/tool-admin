@@ -22,4 +22,11 @@ public class MenuController {
         return SaResult.data(menuService.getUserMenuTree());
     }
 
+    /**
+     * 获取所有的菜单
+     */
+    @GetMapping("/search")
+    public SaResult search() {
+        return SaResult.data(menuService.getAllMenuTree());
+    }
 }

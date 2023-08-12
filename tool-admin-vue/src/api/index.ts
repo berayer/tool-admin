@@ -41,4 +41,12 @@ export function v2_userMenu() {
   })
 }
 
+export function v2_logout() {
+  return http({
+    url: '/logout',
+    method: 'post'
+  })
+}
+
 export * from './user'
+export * from './menu'

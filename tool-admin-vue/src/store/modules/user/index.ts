@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { v2_login } from '@/api'
+import { v2_login, v2_logout } from '@/api'
 
 interface UserSotre {
   /** 用户信息 */
@@ -23,6 +23,12 @@ export const useUserStore = defineStore('user-store', {
         .catch(() => {
           return false
         })
+    },
+
+    /** 用户登出 */
+    async logout() {
+      this.$reset()
+      await v2_logout()
     }
   },
   persist: true

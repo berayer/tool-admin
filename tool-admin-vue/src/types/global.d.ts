@@ -11,16 +11,25 @@ interface Window {
   isLoading: boolean
 }
 
+enum MenuType {
+  /** 菜单路由 */
+  ROUTE = 1,
+  /** 外链接 */
+  BLANK,
+  /** 内嵌页面 */
+  IFARME
+}
+
 type AppMenu = {
   id: number
   title: string
   name: string
   path: string
-  type: 1 | 2 | 3
+  type: MenuType
   icon: string
   children?: AppMenu[]
 }
 
 type anyObj = {
-  [key: string]: any
+  [key: string | number | symbol]: any
 }

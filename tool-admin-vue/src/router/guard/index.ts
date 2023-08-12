@@ -61,5 +61,6 @@ export function createRouterGuard(router: Router) {
   router.afterEach(() => {
     // 结束 loadingBar
     window.$loadingBar?.finish()
+    console.log('route guard end')
   })
 }

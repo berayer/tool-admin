@@ -10,13 +10,16 @@
       </div>
       <header-breadcrumb />
     </div>
-    <div>afc</div>
+    <div>
+      <header-menu></header-menu>
+    </div>
   </n-layout-header>
 </template>
 
 <script setup lang="ts">
 import { useAppStore } from '@/store'
 import HeaderBreadcrumb from './header-breadcrumb.vue'
+import HeaderMenu from './header-menu.vue'
 
 const appStore = useAppStore()
 // 切换侧边栏展开状态

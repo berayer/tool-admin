@@ -36,6 +36,12 @@ public class MenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impleme
         return this.list(query);
     }
 
+    @Override
+    public List<SysMenu> getAllMenuTree() {
+        List<SysMenu> childMenu = getChildMenu(0);
+        return this.fillMenuTree(childMenu, null);
+    }
+
     /**
      * 填充菜单树
      *

@@ -17,7 +17,7 @@
           </template>
         </n-button>
         <!-- 刷新按钮 -->
-        <n-button quaternary circle :focusable="false">
+        <n-button quaternary circle :focusable="false" class="rote">
           <template #icon>
             <m-icon name="mdi:refresh" :size="18" />
           </template>
@@ -69,7 +69,7 @@
               handle=".colMove"
             >
               <template #item="{ element }">
-                <div v-if="element.key" class="flex w-full items-center justify-between py-2">
+                <div v-if="element.key" class="flex w-full items-center justify-between py-1">
                   <n-checkbox v-model:checked="element.show" class="mr-4">
                     <span>{{ element.title }}</span>
                   </n-checkbox>
@@ -120,11 +120,15 @@ const state = reactive({
  * 将传进来的列配置添加到columnsOptions并且填写额外选项
  */
 const arrs = attrs.columns as anyObj[]
+const noShowKeys = ['createBy', 'createTime', 'updateBy', 'updateTime'] as const
 arrs.forEach((item) => {
-  item.show = true
+  item.show = !noShowKeys.includes(item.key)
   columnsOptions.value.push(item)
-  dataTableColumns.value.push(item)
+  item.show && dataTableColumns.value.push(item)
 })
+
+console.log()
+
 /**
  * 监听列配置数组,发生改变时重新生成列
  */
@@ -174,3 +178,12 @@ const scrollTo = debounce((e: Event) => {
   }
 }, 200)
 </script>
+
+<style scoped>
+.rote {
+  transition: all 1s;
+}
+.rote:hover {
+  transform: rotate(360deg);
+}
+</style>

@@ -6,12 +6,7 @@
 import type { DataTableColumns } from 'naive-ui'
 import { NButton } from 'naive-ui'
 
-const state = reactive({
-  editModal: false,
-  editType: 'add',
-  updateData: {}
-})
-const columns = ref<DataTableColumns>([
+const columns: DataTableColumns = [
   {
     type: 'selection'
   },
@@ -43,19 +38,8 @@ const columns = ref<DataTableColumns>([
     render: () =>
       h('div', { class: 'space-x-4' }, [
         h(NButton, { type: 'error', text: true }, { default: () => '删除' }),
-        h(
-          NButton,
-          {
-            type: 'warning',
-            text: true,
-            onClick: () => {
-              state.editModal = true
-              state.editType = 'edit'
-            }
-          },
-          { default: () => '编辑' }
-        )
+        h(NButton, { type: 'warning', text: true }, { default: () => '编辑' })
       ])
   }
-])
+]
 </script>

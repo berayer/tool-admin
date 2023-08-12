@@ -12,6 +12,7 @@ declare module '@vue/runtime-core' {
     MIcon: typeof import('./../components/m-icon/index.vue')['default']
     MTable: typeof import('./../components/m-table/index.vue')['default']
     NaiveProvider: typeof import('./../components/naive-provider/index.vue')['default']
+    NAvatar: typeof import('naive-ui')['NAvatar']
     NBreadcrumb: typeof import('naive-ui')['NBreadcrumb']
     NBreadcrumbItem: typeof import('naive-ui')['NBreadcrumbItem']
     NButton: typeof import('naive-ui')['NButton']
