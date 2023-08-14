@@ -1,11 +1,17 @@
 <template>
-  <m-table :columns="menuColumns" base-url="/menu" size="small"></m-table>
+  <m-table :columns="menuColumns" base-url="/menu" size="small" @add-click="state.addFormModal = true"></m-table>
+  <add-form v-model:show="state.addFormModal" />
 </template>
 
 <script setup lang="ts">
 import MIcon from '@/components/m-icon/index.vue'
 import type { DataTableColumns } from 'naive-ui'
 import { NTag } from 'naive-ui'
+import AddForm from './add-form.vue'
+
+const state = reactive({
+  addFormModal: false
+})
 
 const menuColumns: DataTableColumns = [
   {

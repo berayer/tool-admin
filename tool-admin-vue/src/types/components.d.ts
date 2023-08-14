@@ -43,6 +43,7 @@ declare module '@vue/runtime-core' {
     NPopover: typeof import('naive-ui')['NPopover']
     NResult: typeof import('naive-ui')['NResult']
     NScrollbar: typeof import('naive-ui')['NScrollbar']
+    NSelect: typeof import('naive-ui')['NSelect']
     NStatistic: typeof import('naive-ui')['NStatistic']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
