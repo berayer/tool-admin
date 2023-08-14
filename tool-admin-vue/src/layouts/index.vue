@@ -1,9 +1,9 @@
 <template>
   <n-layout has-sider class="h-screen">
     <global-sider />
-    <n-layout>
-      <global-header />
-      <global-content />
+    <n-layout ref="appContent" class="h-screen">
+      <global-header style="height: 56px" />
+      <global-content style="height: calc(100% - 56px)" />
     </n-layout>
   </n-layout>
 </template>

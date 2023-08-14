@@ -1,5 +1,5 @@
 <template>
-  <n-layout-content content-style="padding: 24px;">
+  <n-layout-content :native-scrollbar="false" content-style="padding: 24px;">
     <router-view />
   </n-layout-content>
 </template>

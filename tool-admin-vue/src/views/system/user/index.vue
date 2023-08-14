@@ -1,5 +1,5 @@
 <template>
-  <m-table base-url="/user" :columns="columns" :row-key="(i) => i.id" @add-click="addClick" />
+  <m-table base-url="/user" :columns="columns" :row-key="(i) => i.id" style="height: var(--ContentHeight)" @add-click="addClick" />
   <add-form ref="addForm" />
 </template>
 

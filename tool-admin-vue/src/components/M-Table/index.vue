@@ -83,14 +83,12 @@
     </div>
     <!-- 数据表格 -->
     <n-data-table
-      bordered
       :on-scroll="scrollTo"
       max-height="720px"
       v-bind="$.attrs"
       :data="data"
       :columns="(dataTableColumns as any)"
-      :single-line="false"
-      striped
+      :single-line="true"
       :loading="state.loading"
     >
     </n-data-table>
