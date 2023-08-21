@@ -17,7 +17,7 @@
           </template>
         </n-button>
         <!-- 刷新按钮 -->
-        <n-button quaternary circle :focusable="false" class="rote">
+        <n-button quaternary circle :focusable="false">
           <template #icon>
             <m-icon name="mdi:refresh" :size="18" />
           </template>
@@ -176,12 +176,3 @@ const scrollTo = debounce((e: Event) => {
   }
 }, 200)
 </script>
-
-<style scoped>
-.rote {
-  transition: all 1s;
-}
-.rote:hover {
-  transform: rotate(360deg);
-}
-</style>
